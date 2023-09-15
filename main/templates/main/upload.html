@@ -1,0 +1,45 @@
+{% extends "main/header.html" %}
+
+{% block content %}  
+   <style>
+    .container-fluide{
+      background-image:url('https://previews.123rf.com/images/madamlead/madamlead1803/madamlead180300005/97184070-metal-stethoscope-for-doctor-diagnosis-in-blue-health-science-laboratory-background.jpg');
+      min-height: 600px;
+      
+    }
+
+   </style>
+        <div class="container-fluide pt-5 pb-5 text-center">
+
+          <!--Simple Form-->
+          <h2 class="my-4">LUNG CANCER PREDICTION PROJECT
+          
+          </h2>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <input type="file" name="upload" accept="image/*">
+                <br>
+                <button class="btn btn-dark my-4" type="submit">Submit</button>
+          </form>
+
+          <!--See Image Uploaded-->
+          <h2 class="my-4">Lung cancer detection</h2>
+          <h2 class="my-4">{{prediction}}</h2>
+          <div class="row">
+            {% if file_url %}
+            <div class="col-lg-6 col-md-6 col-sm-12 pb-4" style="text-align: center; padding-left: 500px;">
+              <div class="abc" >
+              <img src="{{file_url}}" class="img-fluid text-center" ></div>
+              <br>
+              <a class="btn btn-dark my-4" href="/">predict</a>
+            {% else %}
+              <div class="container">
+               <p>No File  selected  yet.</p>
+              </div>
+            {% endif %}
+          </div>
+
+        </div>
+    
+
+{% endblock %}
